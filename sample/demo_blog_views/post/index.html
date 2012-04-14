@@ -1,0 +1,12 @@
+<h1 tal:condition="php:!empty(_GET['tag'])">
+    Posts Tagged with 
+    <i tal:content="php:_GET['tag']">tag</i>
+</h1>
+
+<div id="yw0" class="list-view">
+    <div class="items">
+        <div tal:repeat="data dataProvider/getData">
+            <span metal:use-macro="_view.html/post_view" />
+        </div>
+    </div>
+</div>

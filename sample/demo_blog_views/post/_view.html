@@ -1,0 +1,49 @@
+<span tal:comment="--- for PHPTAL ---" />
+<div class="post"  metal:define-macro="post_view">
+    <div class="title">
+        <a tal:attributes="href data/url" tal:content="data/title" />
+	</div>
+	<div class="author">
+        posted by <tal:block tal:content="data/author/username"/> on <tal:block tal:content="date:data/create_time"/>
+	</div>
+	<div class="content">
+		<?php
+			$ctx->this->beginWidget('CMarkdown', array('purifyOutput'=>true));
+			echo $ctx->data->content;
+			$ctx->this->endWidget();
+		?>
+	</div>
+	<div class="nav">
+		<b>Tags:</b>
+		<?php echo implode(', ', $ctx->data->tagLinks); ?>
+		<br/>
+        <a tal:attributes="href data/url">Permalink</a> |
+        <a tal:attributes="href connect:data/url string:#comment">Comments (${data/commentCount})</a> |
+		Last updated on <tal:block tal:content="date:data/update_time"/>
+	</div>
+</div>
+
+<span tal:comment="--- for PHP ---" />
+<div class="post">
+	<div class="title">
+        <a tal:attributes="href data/url" tal:content="data/title" />
+	</div>
+	<div class="author">
+        posted by <tal:block tal:content="data/author/username"/> on <tal:block tal:content="date:data/create_time"/>
+	</div>
+	<div class="content">
+		<?php
+			$ctx->this->beginWidget('CMarkdown', array('purifyOutput'=>true));
+			echo $ctx->data->content;
+			$ctx->this->endWidget();
+		?>
+	</div>
+	<div class="nav">
+		<b>Tags:</b>
+		<?php echo implode(', ', $ctx->data->tagLinks); ?>
+		<br/>
+        <a tal:attributes="href data/url">Permalink</a> |
+        <a tal:attributes="href connect:data/url string:#comment">Comments (${data/commentCount})</a> |
+		Last updated on <tal:block tal:content="date:data/update_time"/>
+	</div>
+</div>

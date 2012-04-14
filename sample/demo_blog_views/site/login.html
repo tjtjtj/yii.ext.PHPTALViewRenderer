@@ -1,0 +1,59 @@
+<?php
+$ctx->this->pageTitle=Yii::app()->name . ' - Login';
+$ctx->this->breadcrumbs=array(
+	'Login',
+);
+?>
+
+<h1>Login</h1>
+
+<p>Please fill out the following form with your login credentials:</p>
+
+<div class="form">
+<?php $form=$ctx->this->beginWidget('CActiveForm', array(
+	'id'=>'login-form',
+	'enableAjaxValidation'=>true,
+)); ?>
+
+	<p class="note">Fields with <span class="required">*</span> are required.</p>
+    
+    <div class="row">
+        <label for="LoginForm_username" class="required"
+            tal:attributes="class php: model.getError('username') ? 'required error' : 'required'"
+        >
+            Username <span class="required">*</span>
+        </label>
+        <input name="LoginForm[username]" id="LoginForm_username" type="text" 
+            tal:attributes="value model/username; class php: model.getError('username') ? 'error' : NULL" 
+        />
+        <div class="errorMessage" id="LoginForm_username_em_"  tal:content="php: model.getError('username')" ></div>	
+    </div>
+
+	<div class="row">
+		<label for="LoginForm_password" class="required"
+            tal:attributes="class php: model.getError('password') ? 'required error' : 'required'"
+        >
+            Password <span class="required">*</span>
+        </label>
+        <input name="LoginForm[password]" id="LoginForm_password" type="password" 
+               tal:attributes="value model/password; class php: model.getError('password') ? 'error' : NULL"
+        />
+        <div class="errorMessage" id="LoginForm_password_em_" tal:content="php: model.getError('password')" ></div>	
+        <p class="hint">
+			Hint: You may login with <tt>demo/demo</tt>.
+		</p>
+	</div>
+    
+	<div class="row rememberMe">
+		<input id="ytLoginForm_rememberMe" type="hidden" value="0" name="LoginForm[rememberMe]" />
+        <input name="LoginForm[rememberMe]" id="LoginForm_rememberMe" value="1" type="checkbox" />
+        <label for="LoginForm_rememberMe">Remember me next time</label>
+        <div class="errorMessage" id="LoginForm_rememberMe_em_" style="display:none"></div>
+    </div>
+
+	<div class="row submit">
+		<input type="submit" name="yt0" value="Login" />
+    </div>
+
+<?php $ctx->this->endWidget(); ?>
+</div><!-- form -->
