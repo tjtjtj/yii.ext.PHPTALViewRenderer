@@ -25,7 +25,7 @@ This extension allows you to use Twig templates in Yii.
 
 ### Usage
 
-- See PHPTAL manual
+- See <a href="http://phptal.org/manuals.html">PHPTAL manuals</a>
 - Yii::app() には path:app でアクセスできます
 - カレントコントローラのプロパティには path:this/pageTitle でアクセスできます
 
@@ -34,20 +34,18 @@ This extension allows you to use Twig templates in Yii.
 
 PHPTALの道から外れてしまいますが、<?php ?> タグでウィジェットを使うこともできます。
 
-<div id="mainmenu">
-    <?php $this->widget('zii.widgets.CMenu',array(
-        'items'=>array(
-            array('label'=>'Home', 'url'=>array('post/index')),
-            array('label'=>'About', 'url'=>array('site/page', 'view'=>'about')),
-            array('label'=>'Contact', 'url'=>array('site/contact')),
-            array('label'=>'Login', 'url'=>array('site/login'), 'visible'=>Yii::app()->user->isGuest),
-            array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('site/logout'), 'visible'=>!Yii::app()->user->isGuest)
-        ),
-    )); ?>
-</div><!-- mainmenu -->
+    <div id="mainmenu">
+        <?php $this->widget('zii.widgets.CMenu',array(
+            'items'=>array(
+                array('label'=>'Home', 'url'=>array('post/index')),
+                array('label'=>'About', 'url'=>array('site/page', 'view'=>'about')),
+                array('label'=>'Contact', 'url'=>array('site/contact')),
+                array('label'=>'Login', 'url'=>array('site/login'), 'visible'=>Yii::app()->user->isGuest),
+                array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+            ),
+        )); ?>
+    </div><!-- mainmenu -->
 
 ### Sample blog demo view files 
 
 作業中ですが、ブログサンプルを添付しました。htmlファイルはPHPTAL化したものです。
-
-
