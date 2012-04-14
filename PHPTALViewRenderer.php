@@ -29,7 +29,21 @@ class PHPTALViewRenderer extends CApplicationComponent implements IViewRenderer
      * 
      * example: 
      * array(
-     *    'class' => 'PHPTALViewRendererYiiFormatter',
+     *    'app' => Yii:app(),       // paht:app
+     *    'webuser' => Yii:app()->user, // path:webuser
+     *    'this' => 'context',         // path:this
+     * ),
+     */
+    public $paths = array(
+        //'paapp' => Yii::app,       // paht:app
+    );
+
+    /**
+     * @var array
+     * 
+     * example: 
+     * array(
+     *    'class' => 'YiiFormatter',
      *  ),
      */
     public $tales = null;
@@ -39,7 +53,7 @@ class PHPTALViewRenderer extends CApplicationComponent implements IViewRenderer
      * 
      * example: 
      * array(
-     *    'class' => 'PHPTALViewRendererYiiTranslator',
+     *    'class' => 'YiiTranslator',
      *  ),
      */
     public $translator = null;
@@ -79,6 +93,7 @@ class PHPTALViewRenderer extends CApplicationComponent implements IViewRenderer
         // setup option 
         $defaultOptions = array(
             'phpCodeDestination' => $app->getRuntimePath() . '/PHPTAL_temp/',
+            'templateRepository' => $app->getViewPath(), 
         );
         $this->options = array_merge($defaultOptions, $this->options);
         
@@ -119,11 +134,18 @@ class PHPTALViewRenderer extends CApplicationComponent implements IViewRenderer
             $template->setTranslator($this->_translator);
         }
         
-        // se values
+        // set values
         $template->set($this->contextPath, $context);
-        $template->set($this->userPath, Yii::app()->user);
-        foreach($data as $key => $val) {
-            $template->set($key, $val);
+        foreach($this->paths as $key => $value) {
+            $template->set($key, $value);
+        }
+        if (!isset($this->paths['app'])) {
+            $template->set('app', Yii::app());
+        }
+        if (isset($data)) {
+            foreach($data as $key => $val) {
+                $template->set($key, $val);
+            }
         }
         
         // rendering
