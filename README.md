@@ -1,6 +1,4 @@
-## PHPTAL renderer for YiiFramework
-
-This extension allows you to use Twig templates in Yii.
+## PHPTAL renderer for Yii Framework
 
 ### Installation
 
